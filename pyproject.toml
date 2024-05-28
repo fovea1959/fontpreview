@@ -1,0 +1,46 @@
+[project]
+name = 'fontpreview'
+version = '1.2.0'
+requires-python = '>=3.12'
+
+[tool.ruff]
+preview = true
+respect-gitignore = false
+output-format = 'concise'
+
+[tool.ruff.lint]
+select = ['ALL']
+ignore = [
+    'ANN',
+    'COM',
+    'CPY',
+    'D1',
+    'D2',
+    'D401',
+    'E1',
+    'E2',
+    'ISC001',
+    'PLR0913',
+    'PLR0917',
+    'PTH',
+    'Q',
+    'S',
+    'T20',
+]
+
+[tool.ruff.format]
+quote-style = 'single'
+docstring-code-format = true
+
+[tool.pylint.messages_control]
+confidence = ['HIGH', 'CONTROL_FLOW', 'INFERENCE']
+enable = ['bad-inline-option', 'useless-suppression']
+disable = ['R', 'C', 'fixme', 'no-member', 'unused-argument']
+
+[tool.mypy]
+check_untyped_defs = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = ['-v', '--doctest-modules']

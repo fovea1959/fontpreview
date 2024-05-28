@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- encoding: utf-8 -*-
 # vim: se ts=4 et syn=python:
 
 # created by: matteo.guadrini
@@ -19,13 +18,19 @@
 #
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from pkg_resources import get_distribution, DistributionNotFound
 
-from .fontpreview import FontPreview
+
 from .fontbanner import FontBanner, FontLogo, FontWall
-from .fontpage import FontPage, FontPageTemplate, FontBooklet
+from .fontpage import FontBooklet, FontPage, FontPageTemplate
+from .fontpreview import FontPreview
 
-try:
-    __version__ = get_distribution('fontpreview').version
-except DistributionNotFound:
-    __version__ = 'version not found'
+__version__ = '1.2.0'
+__all__ = [
+    'FontBanner',
+    'FontBooklet',
+    'FontLogo',
+    'FontPage',
+    'FontPageTemplate',
+    'FontPreview',
+    'FontWall',
+]
