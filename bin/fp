@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- encoding: utf-8 -*-
 # vim: se ts=4 et syn=python:
 
 # created by: matteo.guadrini
@@ -21,35 +20,72 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from argparse import ArgumentParser
-from fontpreview import FontPreview
-from fontpreview import __version__
+
+from fontpreview import FontPreview, __version__
 
 
 def parse_arguments():
     """
-    Function that captures the parameters and the arguments in the command line
+    Function that captures the parameters and the arguments in the command line.
 
     :return: parser object
     """
     # Create a common parser
     common_parser = ArgumentParser(add_help=False)
-    common_parser.add_argument('--verbose', '-v', help='enable verbosity, for debug',
-                               dest='verbose', action='store_true')
+    common_parser.add_argument(
+        '--verbose',
+        '-v',
+        help='enable verbosity, for debug',
+        dest='verbose',
+        action='store_true',
+    )
 
     # Create a principal parser
-    parser_object = ArgumentParser(prog='fp', description='FontPreview cli', parents=[common_parser])
-    parser_object.add_argument('--version', '-V', action='version', version='%(prog)s ' + __version__)
+    parser_object = ArgumentParser(
+        prog='fp', description='FontPreview cli', parents=[common_parser]
+    )
+    parser_object.add_argument(
+        '--version', '-V', action='version', version='%(prog)s ' + __version__
+    )
     parser_object.add_argument('font', help='font file path')
-    parser_object.add_argument('-t', '--text', help='text include to preview image (default: a b c d e f)', dest='text')
-    parser_object.add_argument('-b', '--background', help='background color (default: white)', dest='bg_color')
-    parser_object.add_argument('-f', '--foreground', help='foreground color (default: black)', dest='fg_color')
-    parser_object.add_argument('-i', '--background-image', help='background image path', dest='image')
-    parser_object.add_argument('-d', '--dimension', help='dimension x and y (default: 700x327)', nargs=2,
-                               dest='dimension', type=int)
-    parser_object.add_argument('-s', '--save', help='save file path (default: current directory)', dest='save_path')
-    parser_object.add_argument('-p', '--text-position', help='save file path (default: center)',
-                               dest='text_position')
-    parser_object.add_argument('-z', '--size', help='size of font (default: 64)', dest='size', type=int)
+    parser_object.add_argument(
+        '-t',
+        '--text',
+        help='text include to preview image (default: a b c d e f)',
+        dest='text',
+    )
+    parser_object.add_argument(
+        '-b', '--background', help='background color (default: white)', dest='bg_color'
+    )
+    parser_object.add_argument(
+        '-f', '--foreground', help='foreground color (default: black)', dest='fg_color'
+    )
+    parser_object.add_argument(
+        '-i', '--background-image', help='background image path', dest='image'
+    )
+    parser_object.add_argument(
+        '-d',
+        '--dimension',
+        help='dimension x and y (default: 700x327)',
+        nargs=2,
+        dest='dimension',
+        type=int,
+    )
+    parser_object.add_argument(
+        '-s',
+        '--save',
+        help='save file path (default: current directory)',
+        dest='save_path',
+    )
+    parser_object.add_argument(
+        '-p',
+        '--text-position',
+        help='save file path (default: center)',
+        dest='text_position',
+    )
+    parser_object.add_argument(
+        '-z', '--size', help='size of font (default: 64)', dest='size', type=int
+    )
 
     # Return parser object
     return parser_object
@@ -57,7 +93,7 @@ def parse_arguments():
 
 def fp_arguments(arguments):
     """
-    Check arguments and build dictionary arguments for FontPreview class
+    Check arguments and build dictionary arguments for FontPreview class.
 
     :param arguments: argparse arguments
     :return: dictionary
@@ -85,7 +121,7 @@ def fp_arguments(arguments):
 
 def v_print(verbose, *message):
     """
-    Format verbosity message
+    Format verbosity message.
 
     :param verbose: verbosity boolean
     :param message: list of message to print in verbosity mode
@@ -106,11 +142,11 @@ if __name__ == '__main__':
 
     # Check other args
     if args.image:
-        v_print(args.verbose, 'set background with image {0}'.format(args.image))
+        v_print(args.verbose, f'set background with image {args.image}')
         fp.bg_image = args.image
         fp.draw()
     if args.text_position:
-        v_print(args.verbose, 'set text position: "{0}"'.format(args.text_position))
+        v_print(args.verbose, f'set text position: "{args.text_position}"')
         fp.set_text_position(args.text_position)
 
     # Save image
@@ -119,4 +155,4 @@ if __name__ == '__main__':
     else:
         fp.save()
 
-    v_print(args.verbose, 'font object => {0}'.format(fp))
+    v_print(args.verbose, f'font object => {fp}')

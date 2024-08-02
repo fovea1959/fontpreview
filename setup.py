@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- encoding: utf-8 -*-
 # vim: se ts=4 et syn=python:
 
 # created by: matteo.guadrini
@@ -20,11 +19,13 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from setuptools import setup
-__version__ = '1.2.0'
+from pathlib import Path
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+from setuptools import setup
+
+from fontpreview import __version__
+
+long_description = Path('README.md').read_text('UTF-8')
 
 setup(
     name='fontpreview',
@@ -40,12 +41,12 @@ setup(
     install_requires=['Pillow'],
     description='Python library for font previews',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type='text/markdown',
     classifiers=[
-            "Programming Language :: Python :: 3",
-            "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-            "Operating System :: OS Independent",
-        ],
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Operating System :: OS Independent',
+    ],
     scripts=['bin/fp'],
-    python_requires='>=3.6'
+    python_requires='>=3.6',
 )
